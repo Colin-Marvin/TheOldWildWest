@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>Weapon.h</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #bbb529;}
+.s3 { color: #cc7832;}
+.s4 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Weapon.h</font>
+</center></td></tr></table>
+<pre><span class="s0">//</span>
+<span class="s0">// Created by Colin Marvin on 12/2/21.</span>
+<span class="s0">//</span>
+
+<span class="s2">#ifndef </span><span class="s1">FANTASYFIGHTINGGAME_WEAPON_H</span>
+<span class="s2">#define </span><span class="s1">FANTASYFIGHTINGGAME_WEAPON_H</span>
+
+<span class="s3">using namespace </span><span class="s1">std</span><span class="s3">;</span>
+
+<span class="s2">#include </span><span class="s4">&quot;string&quot;</span>
+
+<span class="s3">class </span><span class="s1">Weapon {</span>
+<span class="s3">private</span><span class="s1">:</span>
+    <span class="s3">int </span><span class="s1">damage</span><span class="s3">;</span>
+    <span class="s1">string type</span><span class="s3">;</span>
+    <span class="s3">int </span><span class="s1">cost</span><span class="s3">;</span>
+<span class="s3">public</span><span class="s1">:</span>
+    <span class="s1">Weapon()</span><span class="s3">;</span>
+    <span class="s1">Weapon(</span><span class="s3">int </span><span class="s1">d</span><span class="s3">, </span><span class="s1">string t</span><span class="s3">, int </span><span class="s1">x)</span><span class="s3">;</span>
+    <span class="s3">int </span><span class="s1">getDamage()</span><span class="s3">;</span>
+    <span class="s1">string getType()</span><span class="s3">;</span>
+    <span class="s3">int </span><span class="s1">getCost()</span><span class="s3">;</span>
+<span class="s1">}</span><span class="s3">;</span>
+
+
+<span class="s2">#endif </span><span class="s0">//FANTASYFIGHTINGGAME_WEAPON_H</span>
+</pre>
+</body>
+</html>

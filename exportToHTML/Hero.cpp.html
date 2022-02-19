@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Hero.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #bbb529;}
+.s3 { color: #6a8759;}
+.s4 { color: #cc7832;}
+.s5 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Hero.cpp</font>
+</center></td></tr></table>
+<pre><span class="s0">//</span>
+<span class="s0">// Created by Colin Marvin on 12/2/21.</span>
+<span class="s0">//</span>
+<span class="s2">#include </span><span class="s3">&lt;iostream&gt;</span>
+<span class="s2">#include </span><span class="s3">&quot;Hero.h&quot;</span>
+
+<span class="s4">using namespace </span><span class="s1">std</span><span class="s4">;</span>
+
+<span class="s1">Hero::Hero(</span><span class="s4">int </span><span class="s1">h</span><span class="s4">, </span><span class="s1">Weapon w</span><span class="s4">, int </span><span class="s1">m) { </span><span class="s0">//Used in creating a load game, rather than a new one</span>
+    <span class="s1">health = h</span><span class="s4">;</span>
+    <span class="s1">gun = w</span><span class="s4">;</span>
+    <span class="s1">money = m</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s4">void </span><span class="s1">Hero::addHealth(</span><span class="s4">int </span><span class="s1">b) { </span><span class="s0">//Adds health to the user</span>
+    <span class="s1">health+=b</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s4">void </span><span class="s1">Hero::setMoney(</span><span class="s4">int </span><span class="s1">x) { </span><span class="s0">//Changes the users money</span>
+    <span class="s1">money+=x</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s4">int </span><span class="s1">Hero::getHealth() { </span><span class="s0">//Returns the users health</span>
+    <span class="s4">return </span><span class="s1">health</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s4">int </span><span class="s1">Hero::getMoney() { </span><span class="s0">//Returns the users money</span>
+    <span class="s4">return </span><span class="s1">money</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s4">int </span><span class="s1">Hero::getWeapon() { </span><span class="s0">//Returns the weapons damage</span>
+    <span class="s4">return </span><span class="s1">gun.getDamage()</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s1">Hero::Hero() { </span><span class="s0">//Default constructor, used in the new game creation</span>
+    <span class="s1">health = </span><span class="s5">100</span><span class="s4">;</span>
+    <span class="s1">gun = Weapon()</span><span class="s4">;</span>
+    <span class="s1">money = </span><span class="s5">100</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s4">void </span><span class="s1">Hero::loseHealth(</span><span class="s4">int </span><span class="s1">l) { </span><span class="s0">//Subtracts health</span>
+    <span class="s1">health-=l</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s4">void </span><span class="s1">Hero::setWeapon(Weapon newWeapon) { </span><span class="s0">//Changes current weapon to weapon returned</span>
+    <span class="s1">gun = newWeapon</span><span class="s4">;</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<html>
+<head>
+<title>Saloon.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #bbb529;}
+.s3 { color: #6a8759;}
+.s4 { color: #cc7832;}
+.s5 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Saloon.cpp</font>
+</center></td></tr></table>
+<pre><span class="s0">//</span>
+<span class="s0">// Created by Colin Marvin on 12/2/21.</span>
+<span class="s0">//</span>
+
+<span class="s2">#include </span><span class="s3">&quot;Saloon.h&quot;</span>
+<span class="s2">#include </span><span class="s3">&quot;Hero.h&quot;</span>
+<span class="s2">#include </span><span class="s3">&quot;Gunstore.h&quot;</span>
+<span class="s2">#include </span><span class="s3">&lt;iostream&gt;</span>
+<span class="s2">#include </span><span class="s3">&lt;ctime&gt;</span>
+<span class="s4">using namespace </span><span class="s1">std</span><span class="s4">;</span>
+
+
+<span class="s4">void </span><span class="s1">Saloon::drink()  { </span><span class="s0">//Potion aspect of the code</span>
+    <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;How many drinks would you like? Each drink costs $5 and you gain 10 health.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+    <span class="s4">int </span><span class="s1">x</span><span class="s4">; </span><span class="s0">//User input to determine how much health they want to replenish</span>
+    <span class="s1">cin&gt;&gt;x</span><span class="s4">;</span>
+    <span class="s1">Player -&gt; addHealth(</span><span class="s5">10</span><span class="s1">*x)</span><span class="s4">;</span>
+    <span class="s1">Player -&gt; setMoney(-</span><span class="s5">5</span><span class="s1">*x)</span><span class="s4">;</span>
+    <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;You regain &quot; </span><span class="s1">&lt;&lt; </span><span class="s5">10</span><span class="s1">*x &lt;&lt; </span><span class="s3">&quot; health for the price of $&quot; </span><span class="s1">&lt;&lt; </span><span class="s5">5</span><span class="s1">*x &lt;&lt; </span><span class="s3">&quot;.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s4">void </span><span class="s1">Saloon::gamble() { </span><span class="s0">//Alternate way to earn in-game currency</span>
+    <span class="s1">srand(time(NULL))</span><span class="s4">;</span>
+    <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;Welcome to roulette. Would you like to place a bet on red, black, or green? Answer r for red, b for black, g for green, and l to leave.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+    <span class="s1">string x</span><span class="s4">; </span><span class="s0">//Variable to get what color the player bets</span>
+    <span class="s1">cin &gt;&gt; x</span><span class="s4">;</span>
+    <span class="s4">int </span><span class="s1">y</span><span class="s4">;</span>
+    <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;How much are you willing to wager? Enter a number, or -1 to exit. &quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+    <span class="s1">cin &gt;&gt; y</span><span class="s4">; </span><span class="s0">//Number for how large of a bet will be placed</span>
+    <span class="s4">int </span><span class="s1">ball = rand() % </span><span class="s5">38</span><span class="s4">; </span><span class="s0">//Range of roulette, creates random number in the range</span>
+    <span class="s4">if </span><span class="s1">(y != -</span><span class="s5">1</span><span class="s1">) {</span>
+        <span class="s4">if </span><span class="s1">(x == </span><span class="s3">&quot;g&quot;</span><span class="s1">) {</span>
+            <span class="s4">if </span><span class="s1">(ball % </span><span class="s5">19 </span><span class="s1">== </span><span class="s5">0</span><span class="s1">) {</span>
+                <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;You landed on green!! You get 10x prize!!&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+                <span class="s1">Player-&gt;setMoney(</span><span class="s5">10 </span><span class="s1">* y)</span><span class="s4">;</span>
+            <span class="s1">} </span><span class="s4">else </span><span class="s1">{</span>
+                <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;You lose.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+                <span class="s1">Player-&gt;setMoney(-y)</span><span class="s4">;</span>
+            <span class="s1">}</span>
+        <span class="s1">} </span><span class="s4">else if </span><span class="s1">(x == </span><span class="s3">&quot;b&quot;</span><span class="s1">) {</span>
+            <span class="s4">if </span><span class="s1">(ball % </span><span class="s5">2 </span><span class="s1">== </span><span class="s5">0</span><span class="s1">) {</span>
+                <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;You landed on black!! You get $10!&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+                <span class="s1">Player-&gt;setMoney(y)</span><span class="s4">;</span>
+            <span class="s1">} </span><span class="s4">else </span><span class="s1">{</span>
+                <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;You lose.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+                <span class="s1">Player-&gt;setMoney(-</span><span class="s5">7</span><span class="s1">)</span><span class="s4">;</span>
+            <span class="s1">}</span>
+        <span class="s1">} </span><span class="s4">else if </span><span class="s1">(x == </span><span class="s3">&quot;r&quot;</span><span class="s1">) {</span>
+            <span class="s4">if </span><span class="s1">(ball % </span><span class="s5">2 </span><span class="s1">== </span><span class="s5">1</span><span class="s1">) {</span>
+                <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;You landed on red!! You get $10!&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+                <span class="s1">Player-&gt;setMoney(y)</span><span class="s4">;</span>
+            <span class="s1">} </span><span class="s4">else </span><span class="s1">{</span>
+                <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;You lose.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+                <span class="s1">Player-&gt;setMoney(-y)</span><span class="s4">;</span>
+            <span class="s1">}</span>
+        <span class="s1">} </span><span class="s4">else if </span><span class="s1">(x == </span><span class="s3">&quot;l&quot;</span><span class="s1">) {}</span>
+        <span class="s4">else </span><span class="s1">{</span>
+            <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;Please enter a valid input.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+            <span class="s1">gamble()</span><span class="s4">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+
+<span class="s4">void </span><span class="s1">Saloon::fight() { </span><span class="s0">//Fighting sequence</span>
+    <span class="s4">if</span><span class="s1">(count % </span><span class="s5">2 </span><span class="s1">== </span><span class="s5">1</span><span class="s1">) </span><span class="s0">//Alternates the type of cowboy being fought, this being the boss cowboy portion</span>
+    <span class="s1">{</span>
+        <span class="s1">count++</span><span class="s4">;</span>
+        <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;You are fighting &quot; </span><span class="s1">&lt;&lt; boss[bossCount].getType() &lt;&lt; </span><span class="s3">&quot; #&quot; </span><span class="s1">&lt;&lt; bossCount + </span><span class="s5">1 </span><span class="s1">&lt;&lt; </span><span class="s3">&quot;. &quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+        <span class="s4">while</span><span class="s1">(boss[bossCount].getHealth() &gt;= </span><span class="s5">0</span><span class="s1">)</span>
+        <span class="s1">{</span>
+            <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;Your health: &quot; </span><span class="s1">&lt;&lt; Player -&gt; getHealth() &lt;&lt; </span><span class="s3">&quot;. Opponents health: &quot; </span><span class="s1">&lt;&lt; boss[bossCount].getHealth() &lt;&lt; endl</span><span class="s4">;</span>
+            <span class="s1">boss[bossCount].setHealth(Player -&gt; getWeapon())</span><span class="s4">; </span><span class="s0">//Sets the health of the opponent to their health minus the damage from the players gun</span>
+            <span class="s1">Player -&gt; loseHealth(boss[bossCount].getWeapon())</span><span class="s4">; </span><span class="s0">//Sets the health of the player to their health minus the damage from the opponents gun</span>
+            <span class="s4">if</span><span class="s1">(Player -&gt; getHealth() &lt;= </span><span class="s5">0</span><span class="s1">)</span>
+            <span class="s1">{</span>
+                <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;You lose. :( &quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+                <span class="s4">break;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s4">if</span><span class="s1">(boss[bossCount].getHealth() &lt;= </span><span class="s5">0</span><span class="s1">)</span>
+        <span class="s1">{</span>
+
+            <span class="s1">bossCount ++</span><span class="s4">;</span>
+            <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;You win the fight! You earn $&quot; </span><span class="s1">&lt;&lt; boss[bossCount-</span><span class="s5">1</span><span class="s1">].getMoney() &lt;&lt; </span><span class="s3">&quot;!&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+            <span class="s1">Player -&gt;setMoney(boss[bossCount-</span><span class="s5">1</span><span class="s1">].getMoney())</span><span class="s4">;</span>
+        <span class="s1">}</span>
+        <span class="s4">else</span>
+            <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;You lose! :(&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+    <span class="s1">}</span>
+    <span class="s4">else </span><span class="s0">//Underling portion of the fighting process</span>
+    <span class="s1">{</span>
+        <span class="s1">count++</span><span class="s4">;</span>
+        <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;You are fighting &quot; </span><span class="s1">&lt;&lt; underling[underlingCount].getType() &lt;&lt; </span><span class="s3">&quot; #&quot; </span><span class="s1">&lt;&lt; underlingCount + </span><span class="s5">1 </span><span class="s1">&lt;&lt; </span><span class="s3">&quot;. &quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+        <span class="s4">while</span><span class="s1">(underling[underlingCount].getHealth() &gt;= </span><span class="s5">0</span><span class="s1">)</span>
+        <span class="s1">{</span>
+            <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;Your health: &quot; </span><span class="s1">&lt;&lt; Player -&gt; getHealth() &lt;&lt; </span><span class="s3">&quot;. Opponents health: &quot; </span><span class="s1">&lt;&lt; underling[underlingCount].getHealth() &lt;&lt; endl</span><span class="s4">;</span>
+            <span class="s1">underling[underlingCount].setHealth(Player -&gt; getWeapon())</span><span class="s4">;</span>
+            <span class="s1">Player -&gt; loseHealth(underling[underlingCount].getWeapon())</span><span class="s4">;</span>
+            <span class="s4">if</span><span class="s1">(Player -&gt; getHealth() &lt;= </span><span class="s5">0</span><span class="s1">)</span>
+            <span class="s1">{</span>
+                <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;You lose. :( &quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+                <span class="s4">break;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s4">if</span><span class="s1">(underling[underlingCount].getHealth() &lt;= </span><span class="s5">0</span><span class="s1">)</span>
+        <span class="s1">{</span>
+            <span class="s1">underlingCount ++</span><span class="s4">;</span>
+            <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;You win the fight! You earn $&quot; </span><span class="s1">&lt;&lt; underling[underlingCount-</span><span class="s5">1</span><span class="s1">].getMoney() &lt;&lt; </span><span class="s3">&quot;!&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+            <span class="s1">Player -&gt;setMoney(underling[underlingCount-</span><span class="s5">1</span><span class="s1">].getMoney())</span><span class="s4">;</span>
+        <span class="s1">}</span>
+        <span class="s4">else</span>
+            <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;You lose! :(&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+
+<span class="s1">Saloon::Saloon() { </span><span class="s0">//Creates the saloon and populates the enemy vectors and sets the counts for interation</span>
+    <span class="s1">Weapon weap = Weapon()</span><span class="s4">;</span>
+    <span class="s1">Cowboy aa = Cowboy(</span><span class="s5">10</span><span class="s4">, </span><span class="s1">weap</span><span class="s4">, </span><span class="s3">&quot;Lackey&quot;</span><span class="s4">, </span><span class="s5">100</span><span class="s1">)</span><span class="s4">;</span>
+    <span class="s1">Cowboy bb = Cowboy(</span><span class="s5">10</span><span class="s4">, </span><span class="s1">weap</span><span class="s4">, </span><span class="s3">&quot;Lackey&quot;</span><span class="s4">, </span><span class="s5">100</span><span class="s1">)</span><span class="s4">;</span>
+    <span class="s1">Cowboy cc = Cowboy(</span><span class="s5">10</span><span class="s4">, </span><span class="s1">weap</span><span class="s4">, </span><span class="s3">&quot;Lackey&quot;</span><span class="s4">, </span><span class="s5">100</span><span class="s1">)</span><span class="s4">;</span>
+    <span class="s1">Cowboy dd = Cowboy(</span><span class="s5">10</span><span class="s4">, </span><span class="s1">weap</span><span class="s4">, </span><span class="s3">&quot;Lackey&quot;</span><span class="s4">, </span><span class="s5">100</span><span class="s1">)</span><span class="s4">;</span>
+    <span class="s1">underling.push_back(aa)</span><span class="s4">;</span>
+    <span class="s1">underling.push_back(bb)</span><span class="s4">;</span>
+    <span class="s1">underling.push_back(cc)</span><span class="s4">;</span>
+    <span class="s1">underling.push_back(dd)</span><span class="s4">;</span>
+
+    <span class="s1">Weapon bw1 = Weapon(</span><span class="s5">20</span><span class="s4">, </span><span class="s3">&quot;Desert Eagle&quot;</span><span class="s4">, </span><span class="s5">100</span><span class="s1">)</span><span class="s4">;</span>
+    <span class="s1">Weapon bw2 = Weapon(</span><span class="s5">25</span><span class="s4">, </span><span class="s3">&quot;Desert Eagle&quot;</span><span class="s4">, </span><span class="s5">100</span><span class="s1">)</span><span class="s4">;</span>
+    <span class="s1">Weapon bw3 = Weapon(</span><span class="s5">30</span><span class="s4">, </span><span class="s3">&quot;Desert Eagle&quot;</span><span class="s4">, </span><span class="s5">100</span><span class="s1">)</span><span class="s4">;</span>
+    <span class="s1">Weapon bw4 = Weapon(</span><span class="s5">50</span><span class="s4">, </span><span class="s3">&quot;Bazooka&quot;</span><span class="s4">, </span><span class="s5">100</span><span class="s1">)</span><span class="s4">;</span>
+    <span class="s1">Cowboy b1 = Cowboy(</span><span class="s5">30</span><span class="s4">, </span><span class="s1">bw1</span><span class="s4">, </span><span class="s3">&quot;Boss Cowboy&quot;</span><span class="s4">, </span><span class="s5">300</span><span class="s1">)</span><span class="s4">;</span>
+    <span class="s1">Cowboy b2 = Cowboy(</span><span class="s5">50</span><span class="s4">, </span><span class="s1">bw2</span><span class="s4">, </span><span class="s3">&quot;Boss Cowboy&quot;</span><span class="s4">, </span><span class="s5">400</span><span class="s1">)</span><span class="s4">;</span>
+    <span class="s1">Cowboy b3 = Cowboy(</span><span class="s5">70</span><span class="s4">, </span><span class="s1">bw3</span><span class="s4">, </span><span class="s3">&quot;Boss Cowboy&quot;</span><span class="s4">, </span><span class="s5">500</span><span class="s1">)</span><span class="s4">;</span>
+    <span class="s1">Cowboy b4 = Cowboy(</span><span class="s5">100</span><span class="s4">, </span><span class="s1">bw4</span><span class="s4">, </span><span class="s3">&quot;Boss Cowboy&quot;</span><span class="s4">, </span><span class="s5">1000</span><span class="s1">)</span><span class="s4">;</span>
+    <span class="s1">boss.push_back(b1)</span><span class="s4">;</span>
+    <span class="s1">boss.push_back(b2)</span><span class="s4">;</span>
+    <span class="s1">boss.push_back(b3)</span><span class="s4">;</span>
+    <span class="s1">boss.push_back(b4)</span><span class="s4">;</span>
+    <span class="s1">bossCount = </span><span class="s5">0</span><span class="s4">;</span>
+    <span class="s1">underlingCount = </span><span class="s5">0</span><span class="s4">;</span>
+    <span class="s1">count = </span><span class="s5">0</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s4">void </span><span class="s1">Saloon::run() { </span><span class="s0">//Function that runs the game</span>
+    <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;Welcome to the Wild West. Would you like to play a new game, or load a saved game? Answer 1 for new game, and answer 2 for load game.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+    <span class="s4">int </span><span class="s1">ans</span><span class="s4">;</span>
+    <span class="s1">cin&gt;&gt;ans</span><span class="s4">; </span><span class="s0">//Input determines if new game will be created or if a previous game will be loaded</span>
+    <span class="s4">if</span><span class="s1">(ans==</span><span class="s5">1</span><span class="s1">)</span>
+    <span class="s1">{</span>
+        <span class="s1">Player = </span><span class="s4">new </span><span class="s1">Hero()</span><span class="s4">;</span>
+        <span class="s4">while</span><span class="s1">(underlingCount&lt;=underling.max_size() &amp;&amp; Player -&gt; getHealth() &gt;= </span><span class="s5">0 </span><span class="s1">&amp;&amp; bossCount&lt;=boss.max_size())</span>
+        <span class="s1">{ </span><span class="s0">//While the count is less than the max count and the player is alive, question will keep running</span>
+            <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;Would you like continue or save and exit the game? Enter 1 for continue, and 2 for saving.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+            <span class="s1">cin&gt;&gt;ans</span><span class="s4">;</span>
+            <span class="s4">if</span><span class="s1">(ans==</span><span class="s5">2</span><span class="s1">) </span><span class="s0">//If saved, statement breaks and program ends</span>
+                <span class="s4">break;</span>
+            <span class="s1">question()</span><span class="s4">;</span>
+        <span class="s1">}</span>
+        <span class="s4">if</span><span class="s1">(underlingCount&lt;=underling.max_size() &amp;&amp; Player -&gt; getHealth() &gt;= </span><span class="s5">0 </span><span class="s1">&amp;&amp; ans != </span><span class="s5">2</span><span class="s1">)</span>
+        <span class="s1">{</span>
+            <span class="s4">if</span><span class="s1">(bossCount &lt;= boss.max_size())</span>
+                <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;Congrats!! You win!&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+    <span class="s4">else if</span><span class="s1">(ans==</span><span class="s5">2</span><span class="s1">)</span>
+    <span class="s1">{</span>
+        <span class="s4">int </span><span class="s1">hh</span><span class="s4">; </span><span class="s0">//Values to create the loaded game</span>
+        <span class="s4">int </span><span class="s1">ww</span><span class="s4">;</span>
+        <span class="s4">int </span><span class="s1">mm</span><span class="s4">;</span>
+        <span class="s1">progress.open(</span><span class="s3">&quot;Save.txt&quot;</span><span class="s1">)</span><span class="s4">;</span>
+        <span class="s1">progress &gt;&gt; hh &gt;&gt; ww &gt;&gt; mm&gt;&gt; bossCount &gt;&gt; underlingCount</span><span class="s4">;</span>
+        <span class="s1">cout &lt;&lt; hh &lt;&lt; </span><span class="s3">&quot; &quot; </span><span class="s1">&lt;&lt; ww &lt;&lt; </span><span class="s3">&quot; &quot; </span><span class="s1">&lt;&lt; mm &lt;&lt; </span><span class="s3">&quot; &quot; </span><span class="s1">&lt;&lt; bossCount &lt;&lt; </span><span class="s3">&quot; &quot; </span><span class="s1">&lt;&lt; underlingCount &lt;&lt; endl</span><span class="s4">;</span>
+        <span class="s1">Weapon nw = Weapon(ww</span><span class="s4">, </span><span class="s3">&quot;Glock .40&quot;</span><span class="s4">, </span><span class="s5">100</span><span class="s1">)</span><span class="s4">;</span>
+        <span class="s1">Player = </span><span class="s4">new </span><span class="s1">Hero(hh</span><span class="s4">, </span><span class="s1">nw</span><span class="s4">, </span><span class="s1">mm)</span><span class="s4">;</span>
+        <span class="s1">progress.close()</span><span class="s4">;</span>
+        <span class="s4">while</span><span class="s1">(underlingCount&lt;=underling.max_size() &amp;&amp; Player -&gt; getHealth() &gt;= </span><span class="s5">0 </span><span class="s1">&amp;&amp; bossCount&lt;=boss.max_size())</span>
+        <span class="s1">{</span>
+            <span class="s1">question()</span><span class="s4">;</span>
+        <span class="s1">}</span>
+        <span class="s4">if</span><span class="s1">(underlingCount&lt;=underling.max_size() &amp;&amp; Player -&gt; getHealth() &gt;= </span><span class="s5">0</span><span class="s1">)</span>
+        <span class="s1">{</span>
+            <span class="s4">if</span><span class="s1">(bossCount == boss.max_size())</span>
+                <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;Congrats!! You win!&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+    <span class="s4">else</span>
+    <span class="s1">{</span>
+        <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;Please enter a valid input.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+        <span class="s1">run()</span><span class="s4">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+
+<span class="s4">void </span><span class="s1">Saloon::buyGuns() { </span><span class="s0">//Starts the interaction between the player and the gun store</span>
+    <span class="s1">Gunstore gg = Gunstore(Player)</span><span class="s4">; </span><span class="s0">//Creates a gun store with a pointer user</span>
+    <span class="s4">int </span><span class="s1">ans</span><span class="s4">;</span>
+    <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;Welcome to the Gun Store. Would you like to purchase a weapon, or see our stock, or go back to the saloon. Enter 1 for buy, 2 for stock, and 3 to go back&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+    <span class="s1">cin&gt;&gt;ans</span><span class="s4">;</span>
+    <span class="s4">if</span><span class="s1">(ans==</span><span class="s5">1</span><span class="s1">)</span>
+    <span class="s1">{</span>
+        <span class="s1">Player -&gt; setWeapon(gg.buy())</span><span class="s4">; </span><span class="s0">//Sets the player's weapon, and</span>
+        <span class="s1">Player -&gt; setMoney(-gg.pay(Player -&gt; getWeapon()))</span><span class="s4">;</span>
+    <span class="s1">}</span>
+    <span class="s4">else if</span><span class="s1">(ans==</span><span class="s5">2</span><span class="s1">)</span>
+    <span class="s1">{</span>
+        <span class="s1">gg.getStock()</span><span class="s4">;</span>
+    <span class="s1">}</span>
+    <span class="s4">else if</span><span class="s1">(ans==</span><span class="s5">3</span><span class="s1">)</span>
+    <span class="s1">{}</span>
+    <span class="s4">else</span>
+    <span class="s1">{</span>
+        <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;Please enter a valid input.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+
+<span class="s4">void </span><span class="s1">Saloon::question() { </span><span class="s0">//Determines the interaction of the game with the user</span>
+    <span class="s4">int </span><span class="s1">ans</span><span class="s4">;</span>
+    <span class="s1">cout&lt;&lt; </span><span class="s3">&quot;Would you like to visit the Saloon or the Gun Store? Enter 1 for Saloon and 2 for the Gun Store.&quot;</span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+    <span class="s1">cin&gt;&gt;ans</span><span class="s4">; </span><span class="s0">//Asks the user what choice to make, and act accordingly</span>
+    <span class="s4">if</span><span class="s1">(ans==</span><span class="s5">1</span><span class="s1">)</span>
+    <span class="s1">{</span>
+        <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;Would you like to get a drink, fight someone, or gamble. Enter 1 to get a drink, 2 to fight a cowboy, and 3 to gamble. Enter 4 to exit.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+        <span class="s1">cin&gt;&gt;ans</span><span class="s4">;</span>
+        <span class="s4">if</span><span class="s1">(ans==</span><span class="s5">1</span><span class="s1">)</span>
+        <span class="s1">{</span>
+            <span class="s1">drink()</span><span class="s4">;</span>
+            <span class="s1">checkStats()</span><span class="s4">;</span>
+        <span class="s1">}</span>
+        <span class="s4">else if</span><span class="s1">(ans==</span><span class="s5">2</span><span class="s1">)</span>
+        <span class="s1">{</span>
+            <span class="s1">fight()</span><span class="s4">;</span>
+            <span class="s1">checkStats()</span><span class="s4">;</span>
+        <span class="s1">}</span>
+        <span class="s4">else if</span><span class="s1">(ans==</span><span class="s5">3</span><span class="s1">)</span>
+        <span class="s1">{</span>
+            <span class="s1">gamble()</span><span class="s4">;</span>
+            <span class="s1">checkStats()</span><span class="s4">;</span>
+        <span class="s1">}</span>
+        <span class="s4">else if</span><span class="s1">(ans==</span><span class="s5">4</span><span class="s1">)</span>
+        <span class="s1">{}</span>
+        <span class="s4">else</span>
+        <span class="s1">{</span>
+            <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;Please enter a valid input.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+    <span class="s4">else if</span><span class="s1">(ans==</span><span class="s5">2</span><span class="s1">)</span>
+    <span class="s1">{</span>
+        <span class="s1">buyGuns()</span><span class="s4">;</span>
+        <span class="s1">checkStats()</span><span class="s4">;</span>
+    <span class="s1">}</span>
+    <span class="s4">else</span>
+    <span class="s1">{</span>
+        <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;Please enter a valid input.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+
+<span class="s4">void </span><span class="s1">Saloon::checkStats() { </span><span class="s0">//Checks the users stats and writes it to the fstream file</span>
+    <span class="s1">progress.open(</span><span class="s3">&quot;Save.txt&quot;</span><span class="s1">)</span><span class="s4">;</span>
+    <span class="s1">string stat</span><span class="s4">; </span><span class="s0">//Opens fstream file</span>
+    <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;Would you like to view your stats? Enter y for yes, and n for no&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+    <span class="s1">cin&gt;&gt;stat</span><span class="s4">;</span>
+    <span class="s4">if</span><span class="s1">(stat==</span><span class="s3">&quot;y&quot;</span><span class="s1">) </span><span class="s0">//Outputs the users stats and enters data into the fstream file</span>
+    <span class="s1">{</span>
+        <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;Your health is: &quot; </span><span class="s1">&lt;&lt; Player -&gt; getHealth() &lt;&lt; </span><span class="s3">&quot;.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+        <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;Your weapon does &quot; </span><span class="s1">&lt;&lt; Player -&gt; getWeapon() &lt;&lt; </span><span class="s3">&quot; damage.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+        <span class="s1">cout &lt;&lt; </span><span class="s3">&quot;You have $&quot; </span><span class="s1">&lt;&lt; Player -&gt; getMoney() &lt;&lt; </span><span class="s3">&quot;.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s4">;</span>
+        <span class="s1">progress &lt;&lt; Player -&gt; getHealth() &lt;&lt; </span><span class="s3">&quot; &quot;</span><span class="s4">;</span>
+        <span class="s1">progress &lt;&lt; Player -&gt; getWeapon() &lt;&lt; </span><span class="s3">&quot; &quot;</span><span class="s4">;</span>
+        <span class="s1">progress &lt;&lt; Player -&gt; getMoney() &lt;&lt; </span><span class="s3">&quot; &quot;</span><span class="s4">;</span>
+        <span class="s1">progress &lt;&lt; bossCount &lt;&lt; </span><span class="s3">&quot; &quot;</span><span class="s4">;</span>
+        <span class="s1">progress &lt;&lt; underlingCount &lt;&lt; endl</span><span class="s4">;</span>
+    <span class="s1">}</span>
+    <span class="s1">progress.close()</span><span class="s4">;</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>

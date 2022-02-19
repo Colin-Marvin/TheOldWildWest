@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Cowboy.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #bbb529;}
+.s3 { color: #6a8759;}
+.s4 { color: #cc7832;}
+.s5 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cowboy.cpp</font>
+</center></td></tr></table>
+<pre><span class="s0">//</span>
+<span class="s0">// Created by Colin Marvin on 12/2/21.</span>
+<span class="s0">//</span>
+
+<span class="s2">#include </span><span class="s3">&quot;Cowboy.h&quot;</span>
+
+<span class="s1">Cowboy::Cowboy(</span><span class="s4">int </span><span class="s1">h</span><span class="s4">, </span><span class="s1">Weapon g</span><span class="s4">, </span><span class="s1">string t</span><span class="s4">, int </span><span class="s1">m) { </span><span class="s0">//Creates a parameterized cowboy</span>
+    <span class="s1">health = h</span><span class="s4">;</span>
+    <span class="s1">weapon = g</span><span class="s4">;</span>
+    <span class="s1">type = t</span><span class="s4">;</span>
+    <span class="s1">money = m</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s4">void </span><span class="s1">Cowboy::setHealth(</span><span class="s4">int </span><span class="s1">d) { </span><span class="s0">//Changes the health of the cowboy</span>
+    <span class="s1">health -= d</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s1">Cowboy::Cowboy() { </span><span class="s0">//Default constructor for the cowboy</span>
+    <span class="s1">health = </span><span class="s5">10</span><span class="s4">;</span>
+    <span class="s1">weapon = Weapon()</span><span class="s4">;</span>
+    <span class="s1">type = </span><span class="s3">&quot;Cowboy&quot;</span><span class="s4">;</span>
+    <span class="s1">money = </span><span class="s5">100</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s4">int </span><span class="s1">Cowboy::getHealth() { </span><span class="s0">//Returns the health of the cowboy</span>
+    <span class="s4">return </span><span class="s1">health</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s4">int </span><span class="s1">Cowboy::getWeapon() { </span><span class="s0">//Returns the weapons damage</span>
+    <span class="s4">return </span><span class="s1">weapon.getDamage()</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s4">int </span><span class="s1">Cowboy::getMoney() { </span><span class="s0">//Returns the money of the cowboy</span>
+    <span class="s4">return </span><span class="s1">money</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s1">string Cowboy::getType() { </span><span class="s0">//Returns the type of the cowboy</span>
+    <span class="s4">return </span><span class="s1">type</span><span class="s4">;</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
