@@ -25,7 +25,7 @@ A Wild-West themed text game, in which cowboys must be defeated to complete them
 
 ## Technologies
 
-  This game was developed in C++14, using the CLion IDE from JetBrains.
+  This game was developed in C++14, using the CLion IDE from JetBrains. The project itself was then exported to HTML, featuring both C++ and HTML in the           repository.
   
 ## Project Status
 
