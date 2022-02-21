@@ -30,4 +30,4 @@ A Wild-West themed text game, in which cowboys must be defeated to complete them
 ## Project Status
 
   This project is currently finished. Once I learn the skills to implement a GUI, or even to fill the console log screen with gameplay, I will revist this project and implement an improvement for that.
-  At the same time, I will refine the game itself. While this was a project designed to test my C++ skills from what I learned in class, it is still not perfect code.
+  At the same time, I will refine the game itself. While this was a project designed to test my C++ skills from what I learned in class, it is still not perfect code. This project was done entirely by myself, with aid from online sources and my professor in help with code syntax and logic.
